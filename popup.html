@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Text Saver</title>
-    <style>
-        body { font-family: Arial, sans-serif; width: 300px; padding: 10px; }
-        button { width: 100%; padding: 10px; margin-bottom: 10px; }
-        #savedTexts { max-height: 400px; overflow-y: auto; }
-        .text-item { border-bottom: 1px solid #ccc; padding: 5px 0; }
-    </style>
+    <title>Saved Texts</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Text Saver</h2>
-    <button id="saveButton">Save Text from Page</button>
-    <h3>Saved Texts</h3>
-    <div id="savedTexts"></div>
-
+    <h2>Saved Texts</h2>
+    <div id="savedTextsContainer">
+        <p>Loading...</p>
+    </div>
     <script src="popup.js"></script>
 </body>
 </html>
