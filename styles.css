@@ -1,0 +1,27 @@
+/* styles.css */
+
+/* Style for Save buttons */
+.ts-saver-button {
+    /* You can adjust styles here if not set inline */
+}
+
+/* Popup Styles */
+body {
+    font-family: Arial, sans-serif;
+    width: 300px;
+    padding: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.saved-text-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.saved-text-item p {
+    margin: 5px 0 0 0;
+    word-wrap: break-word;
+}
