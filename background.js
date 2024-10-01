@@ -1,25 +1,30 @@
+// Initialize storage on installation
 chrome.runtime.onInstalled.addListener(() => {
-    // Initialize storage if needed
-    chrome.storage.local.set({ savedTexts: [] }, () => {
-        console.log("Initialized storage.");
+    chrome.storage.local.get(['savedTexts'], (result) => {
+        if (!result.savedTexts) {
+            chrome.storage.local.set({ savedTexts: [] });
+        }
     });
 });
 
-// Listen for messages to save data
+// Listen for saveText messages
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "saveText") {
+    if (request.action === 'saveText') {
+        const newEntry = {
+            platform: request.platform,
+            text: request.text,
+            timestamp: request.timestamp
+        };
+
         chrome.storage.local.get(['savedTexts'], (result) => {
-            let updatedTexts = result.savedTexts || [];
-            updatedTexts.push({
-                platform: request.platform,
-                text: request.text,
-                timestamp: new Date().toISOString()
-            });
+            const updatedTexts = result.savedTexts || [];
+            updatedTexts.push(newEntry);
             chrome.storage.local.set({ savedTexts: updatedTexts }, () => {
-                sendResponse({ status: "success" });
+                sendResponse({ status: 'success' });
             });
         });
-        // Return true to indicate asynchronous response
+
+        // Indicate that the response is asynchronous
         return true;
     }
 });
